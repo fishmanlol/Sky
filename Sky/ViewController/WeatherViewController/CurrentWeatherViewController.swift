@@ -34,11 +34,6 @@ class CurrentWeatherViewController: WeatherViewController {
     }
     
     //MARK: - Initialization
-    init(vm: CurrentWeatherViewModel) {
-        self.vm = vm
-        super.init(nibName: nil, bundle: nil)
-    }
-    
     init?(coder: NSCoder, vm: CurrentWeatherViewModel) {
         self.vm = vm
         super.init(coder: coder)
@@ -63,14 +58,13 @@ class CurrentWeatherViewController: WeatherViewController {
     }
     
     //MARK: - Helper
-    private func updateView() {
+    func updateView() {
         activityIndicatorView.stopAnimating()
         
         if vm.isUpdateReady {
             updateWeatherContainer()
         } else {
-            loadingFailedLabel.isHidden = false
-            loadingFailedLabel.text = "Fetch weather/location failed"
+            showLoadingFailure()
         }
     }
 

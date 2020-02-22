@@ -82,19 +82,8 @@ class WeatherDataManagerTest: XCTestCase {
     func test_weatherDataAt_handle_response_decode() {
         session.responseHeader = HTTPURLResponse(url: URL(string: "https://darksky.net")!, statusCode: 200, httpVersion: nil, headerFields: nil)
         
-        let data = """
-        {
-            "latitude": 52,
-            "longitude": 100,
-            "currently": {
-                "time": 1581665677,
-                "summary": "Mostly Cloudy",
-                "icon": "partly-cloudy-night",
-                "temperature": 48.54,
-                "humidity": 0.85,
-            }
-        }
-        """.data(using: .utf8)
+        let data = loadDataFromBundle(ofName: "DarkSky", withExtenison: "json")
+        
         session.responseData = data
         
         var weatherData: WeatherData?
@@ -109,7 +98,8 @@ class WeatherDataManagerTest: XCTestCase {
                                     summary: "Mostly Cloudy",
                                     icon: "partly-cloudy-night",
                                     temperature: 48.54,
-                                    humidity: 0.85))
+                                    humidity: 0.85),
+                                   daily: WeatherData.WeekWeatherData(data: [ForecastData(time: Date(timeIntervalSince1970: 1507180335), temperatureLow: 66, temperatureHigh: 82, icon: "clear-day", humidity: 0.25)]))
         
         XCTAssertEqual(weatherData, expected)
     }

@@ -18,6 +18,11 @@ class WeatherViewController: UIViewController {
         
         setupView()
     }
+    
+    func showLoadingFailure() {
+        loadingFailedLabel.isHidden = false
+        loadingFailedLabel.text = "Load location/weather failed"
+    }
         
     private func setupView() {
         weatherContainerView.isHidden = true
