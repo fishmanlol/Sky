@@ -22,6 +22,15 @@ struct Location: Codable {
         self.longitude = longitude
     }
     
+    init?(_ placemark: CLPlacemark) {
+        guard let name = placemark.name,
+            let location = placemark.location else { return nil }
+        
+        self.init(name: name,
+                  latitude: location.coordinate.latitude,
+                  longitude: location.coordinate.longitude)
+    }
+    
     //MARK: - computed property
     var name: String {
         if let _name = _name {

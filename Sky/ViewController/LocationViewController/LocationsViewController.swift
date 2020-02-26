@@ -17,6 +17,8 @@ class LocationsViewController: UITableViewController {
     
     weak var delegate: LocationsViewControllerProtocol?
     
+    private let addLocationSegue = "AddLocationSegue"
+    
     init?(coder: NSCoder, vm: LocationsViewModel) {
         self.vm = vm
         
@@ -25,6 +27,21 @@ class LocationsViewController: UITableViewController {
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+        case addLocationSegue:
+            guard let destination = segue.destination as? AddLocationViewContronller else {
+                fatalError("AddLocationViewContronller config error")
+            }
+            
+            destination.delegate = self
+        default:
+            break
+        }
     }
 }
 

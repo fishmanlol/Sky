@@ -24,10 +24,6 @@ class AddLocationViewContronller: UITableViewController {
     
     weak var delegate: AddLocationViewContronllerProtocol?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -67,23 +63,49 @@ extension AddLocationViewContronller {
     }
 }
 
-//MARK: -
+//MARK: - UISearchBarDelegate
 extension AddLocationViewContronller: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let geoOperation = geocodeOperation(withAdress: searchText)
-        let reloadOperation = reloadOperation()
+        let geoOperation = geocodeOperation(withAddress: searchText)
+        let queue = OperationQueue()
+        queue.addOperation(geoOperation)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        locations = []
+        locations.removeAll()
         tableView.reloadData()
     }
     
     func geocodeOperation(withAddress address: String) -> Operation {
         return BlockOperation { [weak self] in
             guard let strongSelf = self else { return }
-            strongSelf.geocoder.geocodeAddressString(<#T##addressString: String##String#>, completionHandler: <#T##CLGeocodeCompletionHandler##CLGeocodeCompletionHandler##([CLPlacemark]?, Error?) -> Void#>)
+            let sm = DispatchSemaphore(value: 0)
+            strongSelf.geocoder.geocodeAddressString(address) { [weak self] (placemarks, error) in
+                defer { sm.signal() }
+                
+                if let error = error {
+                    self?.handleGeocodeOperationErrorResponse(error)
+                    return
+                }
+                
+                if let placemarks = placemarks {
+                    self?.handleGeocodeOperationSuccessResponse(placemarks)
+                    return
+                }
+            }
+            sm.wait()
         }
+    }
+    
+    private func handleGeocodeOperationErrorResponse(_ error: Error) {
+        print(error.localizedDescription)
+        locations.removeAll()
+        tableView.reloadData()
+    }
+    
+    private func handleGeocodeOperationSuccessResponse(_ placesmarks: [CLPlacemark]) {
+        locations = placesmarks.compactMap(Location.init)
+        tableView.reloadData()
     }
 }
