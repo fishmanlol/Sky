@@ -10,31 +10,13 @@ import Foundation
 import UIKit
 
 struct CurrentWeatherViewModel {
-    //MARK: - Store property
-    var isLocationReady = false
-    var isWeatherReady = false
+    //MARK: - static property
+    static let empty = CurrentWeatherViewModel(weather: WeatherData.empty)
     
-    var location: Location! {
-        didSet {
-            isLocationReady = location != nil
-        }
-    }
+    //MARK: - store property
+    var weather: WeatherData
     
-    var weather: WeatherData! {
-        didSet {
-            isWeatherReady = weather != nil
-        }
-    }
-    
-    //MARK: - Computed property
-    var isUpdateReady: Bool {
-        return isLocationReady && isWeatherReady
-    }
-    
-    var city: String {
-        return location.name
-    }
-    
+    //MARK: - computed property
     var temperature: String {
         return UserDefaults.temperatureMode.format(temperatureInFahrenheit: weather.currently.temperature)
     }
@@ -56,5 +38,9 @@ struct CurrentWeatherViewModel {
     
     var weatherIcon: UIImage {
         return UIImage.weatherIcon(of: weather.currently.icon)!
+    }
+    
+    var isEmpty: Bool {
+        return weather == .empty
     }
 }

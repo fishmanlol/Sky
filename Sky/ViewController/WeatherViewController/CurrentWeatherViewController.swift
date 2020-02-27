@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxRelay
 
 protocol CurrentWeatherViewControllerProtocol: class {
     func locationButtonTapped(controller: CurrentWeatherViewController)
@@ -25,27 +27,33 @@ class CurrentWeatherViewController: WeatherViewController {
     //MARK: - Properties
     weak var delegate: CurrentWeatherViewControllerProtocol?
     
-    var vm: CurrentWeatherViewModel {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateView()
-            }
-        }
-    }
+    private var weatherVM = BehaviorRelay(value: CurrentWeatherViewModel.empty)
+    private var locationVM = BehaviorRelay(value: CurrentLocationViewModel.empty)
+    private let bag = DisposeBag()
+    
     
     //MARK: - Initialization
-    init?(coder: NSCoder, vm: CurrentWeatherViewModel) {
-        self.vm = vm
-        super.init(coder: coder)
-    }
-    
     required init?(coder: NSCoder) {
-        fatalError()
+        super.init(coder: coder)
     }
     
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        Observable<(CurrentWeatherViewModel, CurrentLocationViewModel)>.combineLatest(weatherVM, locationVM, resultSelector: { (v1, v2) -> (CurrentWeatherViewModel, CurrentLocationViewModel) in
+            return (v1, v2)
+        })
+        .filter {
+            let a = $0
+            
+            let (location, weather) = $0
+            return !location.isEmpty && !weather.isEmpty
+        }
+        .observeOn(MainScheduler.instance)
+        .subscribe(onNext: { [unowned self] in
+            let
+            }).disposed(by: bag)
+        
     }
     
     //MARK: - Action

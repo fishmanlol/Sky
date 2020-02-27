@@ -29,6 +29,11 @@ class LocationsViewController: UITableViewController {
         fatalError()
     }
     
+    @IBSegueAction
+    func makeAddLocationViewController(coder: NSCoder) -> AddLocationViewContronller? {
+        return AddLocationViewContronller(coder: coder, vm: AddLocationViewModel())
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         

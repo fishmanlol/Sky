@@ -50,6 +50,15 @@
 		1977AB6C2400DA1A00D8DD62 /* CLLocation+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977AB6B2400DA1A00D8DD62 /* CLLocation+.swift */; };
 		1977AB6E2400DF1600D8DD62 /* UserDefaultsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977AB6D2400DF1600D8DD62 /* UserDefaultsTest.swift */; };
 		1977AB732401D1D200D8DD62 /* GeocoderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977AB722401D1D200D8DD62 /* GeocoderOperation.swift */; };
+		8E3DD13A2407224F0042459C /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD1392407224F0042459C /* AddLocationViewModel.swift */; };
+		8E3DD13F240737FD0042459C /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13C240737FC0042459C /* RxSwift.framework */; };
+		8E3DD140240737FD0042459C /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13C240737FC0042459C /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E3DD141240737FD0042459C /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13D240737FD0042459C /* RxCocoa.framework */; };
+		8E3DD142240737FD0042459C /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13D240737FD0042459C /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E3DD143240737FD0042459C /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13E240737FD0042459C /* RxRelay.framework */; };
+		8E3DD144240737FD0042459C /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13E240737FD0042459C /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8E3DD147240739530042459C /* Codable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD146240739530042459C /* Codable+.swift */; };
+		8E3DD149240749E00042459C /* CurrentLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +77,22 @@
 			remoteInfo = Sky;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8E3DD145240737FD0042459C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8E3DD142240737FD0042459C /* RxCocoa.framework in Embed Frameworks */,
+				8E3DD140240737FD0042459C /* RxSwift.framework in Embed Frameworks */,
+				8E3DD144240737FD0042459C /* RxRelay.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1055453223F62C0200250BC6 /* Sky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sky.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +145,12 @@
 		1977AB6B2400DA1A00D8DD62 /* CLLocation+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocation+.swift"; sourceTree = "<group>"; };
 		1977AB6D2400DF1600D8DD62 /* UserDefaultsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsTest.swift; sourceTree = "<group>"; };
 		1977AB722401D1D200D8DD62 /* GeocoderOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocoderOperation.swift; sourceTree = "<group>"; };
+		8E3DD1392407224F0042459C /* AddLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewModel.swift; sourceTree = "<group>"; };
+		8E3DD13C240737FC0042459C /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/Static/RxSwift.framework; sourceTree = "<group>"; };
+		8E3DD13D240737FD0042459C /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/Static/RxCocoa.framework; sourceTree = "<group>"; };
+		8E3DD13E240737FD0042459C /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/Static/RxRelay.framework; sourceTree = "<group>"; };
+		8E3DD146240739530042459C /* Codable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+.swift"; sourceTree = "<group>"; };
+		8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +158,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E3DD141240737FD0042459C /* RxCocoa.framework in Frameworks */,
+				8E3DD13F240737FD0042459C /* RxSwift.framework in Frameworks */,
+				8E3DD143240737FD0042459C /* RxRelay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +188,7 @@
 				1055454B23F62C0400250BC6 /* SkyTests */,
 				1055455623F62C0400250BC6 /* SkyUITests */,
 				1055453323F62C0200250BC6 /* Products */,
+				8E3DD13B240737FC0042459C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,6 +317,7 @@
 				1055459223FB12B700250BC6 /* UIImage+.swift */,
 				1977AB4024007CD200D8DD62 /* UserDedaults+.swift */,
 				1977AB6B2400DA1A00D8DD62 /* CLLocation+.swift */,
+				8E3DD146240739530042459C /* Codable+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -330,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				1055459023FB116F00250BC6 /* CurrentWeatherViewModel.swift */,
+				8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */,
 				1977AB3E23FFB32A00D8DD62 /* WeekWeatherViewModel.swift */,
 				1977AB4C2400A68A00D8DD62 /* WeekdayWeatherViewModel.swift */,
 			);
@@ -432,6 +469,7 @@
 			children = (
 				1977AB662400CD9800D8DD62 /* LocationsViewModel.swift */,
 				1977AB692400D04800D8DD62 /* LocationViewModel.swift */,
+				8E3DD1392407224F0042459C /* AddLocationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -451,6 +489,16 @@
 			path = Operation;
 			sourceTree = "<group>";
 		};
+		8E3DD13B240737FC0042459C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E3DD13D240737FD0042459C /* RxCocoa.framework */,
+				8E3DD13E240737FD0042459C /* RxRelay.framework */,
+				8E3DD13C240737FC0042459C /* RxSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -461,6 +509,7 @@
 				1055452E23F62C0200250BC6 /* Sources */,
 				1055452F23F62C0200250BC6 /* Frameworks */,
 				1055453023F62C0200250BC6 /* Resources */,
+				8E3DD145240737FD0042459C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -588,9 +637,11 @@
 				1055457923F68DFD00250BC6 /* URLSessionProtocol.swift in Sources */,
 				1055457423F687C400250BC6 /* WeatherDataManager.swift in Sources */,
 				1055458023FA0F5700250BC6 /* URLSessionDataTaskProtocol.swift in Sources */,
+				8E3DD13A2407224F0042459C /* AddLocationViewModel.swift in Sources */,
 				1977AB6C2400DA1A00D8DD62 /* CLLocation+.swift in Sources */,
 				1977AB672400CD9800D8DD62 /* LocationsViewModel.swift in Sources */,
 				1977AB3F23FFB32A00D8DD62 /* WeekWeatherViewModel.swift in Sources */,
+				8E3DD149240749E00042459C /* CurrentLocationViewModel.swift in Sources */,
 				1977AB4524008ECB00D8DD62 /* SettingCell.swift in Sources */,
 				1977AB612400C9CE00D8DD62 /* AddLocationViewController.swift in Sources */,
 				1055458223FA0F7B00250BC6 /* URLSessionDataTask+.swift in Sources */,
@@ -601,6 +652,7 @@
 				1977AB4124007CD200D8DD62 /* UserDedaults+.swift in Sources */,
 				1055453A23F62C0200250BC6 /* RootViewController.swift in Sources */,
 				1977AB4D2400A68A00D8DD62 /* WeekdayWeatherViewModel.swift in Sources */,
+				8E3DD147240739530042459C /* Codable+.swift in Sources */,
 				1977AB6A2400D04800D8DD62 /* LocationViewModel.swift in Sources */,
 				1055457123F684FD00250BC6 /* WeatherData.swift in Sources */,
 				1055453623F62C0200250BC6 /* AppDelegate.swift in Sources */,
@@ -798,6 +850,10 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
+				);
 				INFOPLIST_FILE = Sky/SupportFile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -819,6 +875,10 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DKH5D278T8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
+				);
 				INFOPLIST_FILE = Sky/SupportFile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

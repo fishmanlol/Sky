@@ -14,15 +14,44 @@ protocol AddLocationViewContronllerProtocol: class {
 }
 
 class AddLocationViewContronller: UITableViewController {
+    
+    //MARK: - property
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var locations: [Location] = []
-    
-    private lazy var geocoder = CLGeocoder()
-    
-    private lazy var operationQueue = OperationQueue()
+    private let vm: AddLocationViewModel
     
     weak var delegate: AddLocationViewContronllerProtocol?
+
+    //MARK: - initialization
+    init?(coder: NSCoder, vm: AddLocationViewModel) {
+        self.vm = vm
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    //MARK: - view life cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        vm.locationsDidChange = { [unowned self] (_) in
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
+        vm.queryStatusDidChange = { [unowned self] (isQuerying) in
+            DispatchQueue.main.async {
+                if isQuerying {
+                    self.title = "Searching..."
+                } else {
+                    self.title = "Add a location"
+                }
+            }
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -34,7 +63,7 @@ class AddLocationViewContronller: UITableViewController {
 //MARK: - Datasource
 extension AddLocationViewContronller {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return vm.numberOfLocations
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +72,7 @@ extension AddLocationViewContronller {
             fatalError("Location cell error")
         }
         
-        let location = locations[indexPath.row]
-        let viewModel = LocationViewModel(location: location)
+        let viewModel = vm.locationViewModel(at: indexPath.row)
         
         cell.configure(with: viewModel)
         
@@ -55,7 +83,7 @@ extension AddLocationViewContronller {
 //MARK: - Delegate
 extension AddLocationViewContronller {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = locations[indexPath.row]
+        let location = vm.location(at: indexPath.row)
         
         delegate?.controller(self, didAddLocation: location)
         
@@ -66,46 +94,10 @@ extension AddLocationViewContronller {
 //MARK: - UISearchBarDelegate
 extension AddLocationViewContronller: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let geoOperation = geocodeOperation(withAddress: searchText)
-        let queue = OperationQueue()
-        queue.addOperation(geoOperation)
+        vm.queryText = searchText
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        locations.removeAll()
-        tableView.reloadData()
-    }
-    
-    func geocodeOperation(withAddress address: String) -> Operation {
-        return BlockOperation { [weak self] in
-            guard let strongSelf = self else { return }
-            let sm = DispatchSemaphore(value: 0)
-            strongSelf.geocoder.geocodeAddressString(address) { [weak self] (placemarks, error) in
-                defer { sm.signal() }
-                
-                if let error = error {
-                    self?.handleGeocodeOperationErrorResponse(error)
-                    return
-                }
-                
-                if let placemarks = placemarks {
-                    self?.handleGeocodeOperationSuccessResponse(placemarks)
-                    return
-                }
-            }
-            sm.wait()
-        }
-    }
-    
-    private func handleGeocodeOperationErrorResponse(_ error: Error) {
-        print(error.localizedDescription)
-        locations.removeAll()
-        tableView.reloadData()
-    }
-    
-    private func handleGeocodeOperationSuccessResponse(_ placesmarks: [CLPlacemark]) {
-        locations = placesmarks.compactMap(Location.init)
-        tableView.reloadData()
+        vm.queryText = ""
     }
 }

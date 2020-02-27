@@ -10,6 +10,9 @@ import Foundation
 import CoreLocation
 
 struct Location: Codable {
+    //MARK: - static property
+    static let empty = Location(name: nil, latitude: 0, longitude: 0)
+    
     //MARK: - store property
     private var _name: String?
     var latitude: Double

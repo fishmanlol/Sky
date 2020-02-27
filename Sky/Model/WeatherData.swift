@@ -9,6 +9,16 @@
 import Foundation
 
 struct WeatherData: Codable {
+    //MARK: - static property
+    static let empty = WeatherData(latitude: 0,
+                                   longitude: 0,
+                                   currently: CurrentWeather(time: Date(),
+                                                             summary: "",
+                                                             icon: "",
+                                                             temperature: 0,
+                                                             humidity: 0),
+                                   daily: WeekWeatherData(data: []))
+    
     let latitude: Double
     let longitude: Double
     let currently: CurrentWeather
