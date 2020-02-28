@@ -15,6 +15,10 @@ struct CurrentLocationViewModel {
     //MARK: - property
     private var location: Location
     
+    init(location: Location) {
+        self.location = location
+    }
+    
     //MARK: - computed property
     var city: String {
         return location.name

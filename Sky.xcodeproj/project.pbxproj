@@ -59,6 +59,7 @@
 		8E3DD144240737FD0042459C /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13E240737FD0042459C /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E3DD147240739530042459C /* Codable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD146240739530042459C /* Codable+.swift */; };
 		8E3DD149240749E00042459C /* CurrentLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */; };
+		8E795F552408A817008737B4 /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E795F542408A817008737B4 /* CLLocationManager+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		8E3DD13E240737FD0042459C /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/Static/RxRelay.framework; sourceTree = "<group>"; };
 		8E3DD146240739530042459C /* Codable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+.swift"; sourceTree = "<group>"; };
 		8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewModel.swift; sourceTree = "<group>"; };
+		8E795F542408A817008737B4 /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 		1055457A23F68ED100250BC6 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8E795F532408A7E5008737B4 /* Rx */,
 				1055457B23F68EE000250BC6 /* URLSession+.swift */,
 				1055458123FA0F7B00250BC6 /* URLSessionDataTask+.swift */,
 				1055459223FB12B700250BC6 /* UIImage+.swift */,
@@ -499,6 +502,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E795F532408A7E5008737B4 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				8E795F542408A817008737B4 /* CLLocationManager+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -636,6 +647,7 @@
 			files = (
 				1055457923F68DFD00250BC6 /* URLSessionProtocol.swift in Sources */,
 				1055457423F687C400250BC6 /* WeatherDataManager.swift in Sources */,
+				8E795F552408A817008737B4 /* CLLocationManager+Rx.swift in Sources */,
 				1055458023FA0F5700250BC6 /* URLSessionDataTaskProtocol.swift in Sources */,
 				8E3DD13A2407224F0042459C /* AddLocationViewModel.swift in Sources */,
 				1977AB6C2400DA1A00D8DD62 /* CLLocation+.swift in Sources */,

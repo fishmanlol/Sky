@@ -27,8 +27,8 @@ class CurrentWeatherViewController: WeatherViewController {
     //MARK: - Properties
     weak var delegate: CurrentWeatherViewControllerProtocol?
     
-    private var weatherVM = BehaviorRelay(value: CurrentWeatherViewModel.empty)
-    private var locationVM = BehaviorRelay(value: CurrentLocationViewModel.empty)
+    var weatherVM = BehaviorRelay(value: CurrentWeatherViewModel.empty)
+    var locationVM = BehaviorRelay(value: CurrentLocationViewModel.empty)
     private let bag = DisposeBag()
     
     
@@ -40,20 +40,24 @@ class CurrentWeatherViewController: WeatherViewController {
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        Observable<(CurrentWeatherViewModel, CurrentLocationViewModel)>.combineLatest(weatherVM, locationVM, resultSelector: { (v1, v2) -> (CurrentWeatherViewModel, CurrentLocationViewModel) in
-            return (v1, v2)
-        })
-        .filter {
-            let a = $0
-            
-            let (location, weather) = $0
-            return !location.isEmpty && !weather.isEmpty
-        }
-        .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [unowned self] in
-            let
-            }).disposed(by: bag)
+        let viewModel = Observable.combineLatest(locationVM, weatherVM) { ($0, $1) }
+            .filter {
+                let (location, weather) = $0
+                return !location.isEmpty && !weather.isEmpty
+            }
+            .share(replay: 1, scope: .whileConnected)
+            .asDriver(onErrorJustReturn: (CurrentLocationViewModel.empty, CurrentWeatherViewModel.empty))
         
+        viewModel.map { _ in false }.drive(self.activityIndicatorView.rx.isAnimating).disposed(by: bag)
+        viewModel.map { _ in false }.drive(self.weatherContainerView.rx.isHidden).disposed(by: bag)
+        
+        viewModel.map { $0.0.city }.drive(self.locationLabel.rx.text).disposed(by: bag)
+        
+        viewModel.map { $0.1.date }.drive(self.dateLabel.rx.text).disposed(by: bag)
+        viewModel.map { $0.1.summary }.drive(self.summaryLabel.rx.text).disposed(by: bag)
+        viewModel.map { $0.1.humudity }.drive(self.humidityLabel.rx.text).disposed(by: bag)
+        viewModel.map { $0.1.weatherIcon }.drive(self.weatherIcon.rx.image).disposed(by: bag)
+        viewModel.map { $0.1.temperature }.drive(self.temperatureLabel.rx.text).disposed(by: bag)
     }
     
     //MARK: - Action
@@ -67,26 +71,7 @@ class CurrentWeatherViewController: WeatherViewController {
     
     //MARK: - Helper
     func updateView() {
-        activityIndicatorView.stopAnimating()
-        
-        if vm.isUpdateReady {
-            updateWeatherContainer()
-        } else {
-            showLoadingFailure()
-        }
-    }
-
-    private func updateWeatherContainer() {
-        weatherContainerView.isHidden = false
-        
-        locationLabel.text = vm.city
-        
-        temperatureLabel.text = vm.temperature
-        
-        weatherIcon.image = vm.weatherIcon
-        
-        summaryLabel.text = vm.summary
-        
-        dateLabel.text = vm.date
+        weatherVM.accept(weatherVM.value)
+        locationVM.accept(locationVM.value)
     }
 }

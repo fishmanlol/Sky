@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import RxSwift
 
 class RootViewController: UIViewController {
     
@@ -27,6 +28,7 @@ class RootViewController: UIViewController {
     }
     
     private var _currentLocation: Location?
+    private let bag = DisposeBag()
     
     private lazy var locationManager: CLLocationManager = {
        let manager = CLLocationManager()
@@ -77,7 +79,7 @@ class RootViewController: UIViewController {
     
     @IBSegueAction
     func makeCurrentWeatherViewController(coder: NSCoder, sender: Any?, segueIdentifier: String?) -> CurrentWeatherViewController? {
-        return CurrentWeatherViewController(coder: coder, vm: CurrentWeatherViewModel())
+        return nil
     }
     
     @IBSegueAction
@@ -104,18 +106,19 @@ class RootViewController: UIViewController {
         let lat = currentLocation.coordinate.latitude
         let lon = currentLocation.coordinate.longitude
         
-        WeatherDataManager.shared.weatherDataAt(latitude: lat, longitude: lon) { (weather, error) in
-            if let error = error {
-                dump(error)
-            } else if let weather = weather {
-                self.currentWeatherViewController.vm.weather = weather
-                self.weekWeatherViewController.vm.weatherData = weather.daily.data
-                return
-            }
-            
-            self.currentWeatherViewController.vm.weather = nil
-            self.weekWeatherViewController.vm.weatherData = nil
-        }
+        let weather = WeatherDataManager.shared.weatherDataAt(latitude: lat, longitude: lon)
+            .share(replay: 1, scope: .whileConnected)
+            .observeOn(MainScheduler.instance)
+        
+        weather.map { CurrentWeatherViewModel(weather: $0) }
+            .bind(to: self.currentWeatherViewController.weatherVM )
+            .disposed(by: bag)
+        
+        weather.map { WeekWeatherViewModel(weatherData: $0.daily.data) }
+            .subscribe(onNext: {
+                self.weekWeatherViewController.vm = $0
+            })
+            .disposed(by: bag)
     }
     
     private func fetchCity() {
@@ -127,7 +130,7 @@ class RootViewController: UIViewController {
             } else if let city = placemarks?.first?.locality {
                 let location = Location(name: city, latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
                 self._currentLocation = location
-                self.currentWeatherViewController.vm.location = location
+                self.currentWeatherViewController.locationVM.accept(CurrentLocationViewModel(location: location))
             }
         }
     }
@@ -135,11 +138,17 @@ class RootViewController: UIViewController {
     private func requestLocation() {
         locationManager.delegate = self
         
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.requestLocation()
-        } else {
+        guard CLLocationManager.authorizationStatus() == .authorizedWhenInUse else {
             locationManager.requestWhenInUseAuthorization()
+            return
         }
+        
+        locationManager.startUpdatingLocation()
+        locationManager.rx.didUpdateLocations
+            .take(1)
+            .map { $0.first }
+            .subscribe(onNext: { self.currentLocation = $0 })
+            .disposed(by: bag)
     }
     
     private func setupActiveNotification() {
