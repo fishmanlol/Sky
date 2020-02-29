@@ -73,6 +73,10 @@ final class WeatherDataManager {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
         
-        return (urlSession as! URLSession).rx.data(request: request).map { try WeatherData.decodeJSONFrom($0) }
+        return (urlSession as! URLSession)
+            .rx
+            .data(request: request)
+            .map { try WeatherData.decodeJSONFrom($0) }
+            .catchErrorJustReturn(WeatherData.invalid)
     }
 }

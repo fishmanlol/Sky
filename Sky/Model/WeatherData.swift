@@ -19,6 +19,11 @@ struct WeatherData: Codable {
                                                              humidity: 0),
                                    daily: WeekWeatherData(data: []))
     
+    static let invalid = WeatherData(latitude: 0,
+                                     longitude: 0,
+                                     currently: CurrentWeather(time: Date.from(string: "1970-01-01"), summary: "n/a", icon: "n/a", temperature: -274, humidity: -1),
+                                     daily: WeekWeatherData(data: []))
+    
     let latitude: Double
     let longitude: Double
     let currently: CurrentWeather

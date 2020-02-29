@@ -61,6 +61,10 @@ class CurrentWeatherViewController: WeatherViewController {
     }
     
     //MARK: - Action
+    @IBAction func retryBtTapped(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func locationBtTapped(_ sender: UIButton) {
         delegate?.locationButtonTapped(controller: self)
     }

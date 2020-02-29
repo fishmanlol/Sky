@@ -16,10 +16,8 @@ class CurrentWeatherViewModelTest: XCTestCase {
         super.setUp()
         
         let data = loadDataFromBundle(ofName: "DarkSky", withExtenison: "json")
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        
-        vm = CurrentWeatherViewModel()
+        vm = CurrentWeatherViewModel(weather: try! WeatherData.decodeJSONFrom(data))
+        vm.wea
         vm.location = Location(name: "Home", latitude: 52, longitude: 100)
         vm.weather = try! decoder.decode(WeatherData.self, from: data)
     }

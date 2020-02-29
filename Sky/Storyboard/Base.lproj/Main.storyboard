@@ -353,9 +353,16 @@
             <objects>
                 <viewController id="LD1-Ib-JvZ" customClass="CurrentWeatherViewController" customModule="Sky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qJo-yU-kCN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="322.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9g-Eg-wWE">
+                                <rect key="frame" x="188.5" y="163.5" width="37" height="30"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retryBtTapped:" destination="LD1-Ib-JvZ" eventType="touchUpInside" id="LmI-Ux-6yl"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRt-st-o6k">
                                 <rect key="frame" x="8" y="151" width="398" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -459,11 +466,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="uRt-st-o6k" firstAttribute="bottom" secondItem="G9g-Eg-wWE" secondAttribute="top" constant="8" id="3es-ST-Bk0"/>
                             <constraint firstAttribute="bottom" secondItem="fmT-fW-uVH" secondAttribute="bottom" id="9Wf-N9-7je"/>
                             <constraint firstItem="uRt-st-o6k" firstAttribute="centerY" secondItem="qJo-yU-kCN" secondAttribute="centerY" id="MfI-v8-QBo"/>
                             <constraint firstItem="qno-cv-Lj3" firstAttribute="trailing" secondItem="uRt-st-o6k" secondAttribute="trailing" constant="8" id="TDb-3g-R2d"/>
                             <constraint firstItem="4ko-27-f5Q" firstAttribute="centerY" secondItem="qJo-yU-kCN" secondAttribute="centerY" id="aJX-Zp-Lpf"/>
                             <constraint firstItem="fmT-fW-uVH" firstAttribute="top" secondItem="qJo-yU-kCN" secondAttribute="top" id="aaH-1r-OmQ"/>
+                            <constraint firstItem="G9g-Eg-wWE" firstAttribute="centerX" secondItem="uRt-st-o6k" secondAttribute="centerX" id="bkj-74-4Zl"/>
                             <constraint firstAttribute="trailing" secondItem="fmT-fW-uVH" secondAttribute="trailing" id="daM-NK-7ef"/>
                             <constraint firstItem="uRt-st-o6k" firstAttribute="centerX" secondItem="qJo-yU-kCN" secondAttribute="centerX" id="oKZ-34-Elr"/>
                             <constraint firstItem="fmT-fW-uVH" firstAttribute="leading" secondItem="qJo-yU-kCN" secondAttribute="leading" id="qEu-dj-Dtj"/>

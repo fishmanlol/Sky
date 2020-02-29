@@ -51,15 +51,16 @@
 		1977AB6E2400DF1600D8DD62 /* UserDefaultsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977AB6D2400DF1600D8DD62 /* UserDefaultsTest.swift */; };
 		1977AB732401D1D200D8DD62 /* GeocoderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1977AB722401D1D200D8DD62 /* GeocoderOperation.swift */; };
 		8E3DD13A2407224F0042459C /* AddLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD1392407224F0042459C /* AddLocationViewModel.swift */; };
-		8E3DD13F240737FD0042459C /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13C240737FC0042459C /* RxSwift.framework */; };
-		8E3DD140240737FD0042459C /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13C240737FC0042459C /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E3DD141240737FD0042459C /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13D240737FD0042459C /* RxCocoa.framework */; };
-		8E3DD142240737FD0042459C /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13D240737FD0042459C /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8E3DD143240737FD0042459C /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13E240737FD0042459C /* RxRelay.framework */; };
-		8E3DD144240737FD0042459C /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3DD13E240737FD0042459C /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8E3DD147240739530042459C /* Codable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD146240739530042459C /* Codable+.swift */; };
 		8E3DD149240749E00042459C /* CurrentLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */; };
 		8E795F552408A817008737B4 /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E795F542408A817008737B4 /* CLLocationManager+Rx.swift */; };
+		8EC8B25E2409F571004AA226 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25B2409F571004AA226 /* RxRelay.framework */; };
+		8EC8B25F2409F571004AA226 /* RxRelay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25B2409F571004AA226 /* RxRelay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EC8B2602409F571004AA226 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25C2409F571004AA226 /* RxCocoa.framework */; };
+		8EC8B2612409F571004AA226 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25C2409F571004AA226 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EC8B2622409F571004AA226 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25D2409F571004AA226 /* RxSwift.framework */; };
+		8EC8B2632409F571004AA226 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC8B25D2409F571004AA226 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8EC8B2662409FB85004AA226 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC8B2652409FB85004AA226 /* Date+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,15 +81,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8E3DD145240737FD0042459C /* Embed Frameworks */ = {
+		8EC8B2642409F571004AA226 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8E3DD142240737FD0042459C /* RxCocoa.framework in Embed Frameworks */,
-				8E3DD140240737FD0042459C /* RxSwift.framework in Embed Frameworks */,
-				8E3DD144240737FD0042459C /* RxRelay.framework in Embed Frameworks */,
+				8EC8B2612409F571004AA226 /* RxCocoa.framework in Embed Frameworks */,
+				8EC8B25F2409F571004AA226 /* RxRelay.framework in Embed Frameworks */,
+				8EC8B2632409F571004AA226 /* RxSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,6 +154,12 @@
 		8E3DD146240739530042459C /* Codable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+.swift"; sourceTree = "<group>"; };
 		8E3DD148240749E00042459C /* CurrentLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewModel.swift; sourceTree = "<group>"; };
 		8E795F542408A817008737B4 /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
+		8EC8B24D2409EDBF004AA226 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/Static/RxBlocking.framework; sourceTree = "<group>"; };
+		8EC8B24E2409EDBF004AA226 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/Static/RxTest.framework; sourceTree = "<group>"; };
+		8EC8B25B2409F571004AA226 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
+		8EC8B25C2409F571004AA226 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		8EC8B25D2409F571004AA226 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		8EC8B2652409FB85004AA226 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,9 +167,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E3DD141240737FD0042459C /* RxCocoa.framework in Frameworks */,
-				8E3DD13F240737FD0042459C /* RxSwift.framework in Frameworks */,
-				8E3DD143240737FD0042459C /* RxRelay.framework in Frameworks */,
+				8EC8B2602409F571004AA226 /* RxCocoa.framework in Frameworks */,
+				8EC8B25E2409F571004AA226 /* RxRelay.framework in Frameworks */,
+				8EC8B2622409F571004AA226 /* RxSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +328,7 @@
 				1977AB4024007CD200D8DD62 /* UserDedaults+.swift */,
 				1977AB6B2400DA1A00D8DD62 /* CLLocation+.swift */,
 				8E3DD146240739530042459C /* Codable+.swift */,
+				8EC8B2652409FB85004AA226 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -495,6 +503,11 @@
 		8E3DD13B240737FC0042459C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8EC8B25C2409F571004AA226 /* RxCocoa.framework */,
+				8EC8B25B2409F571004AA226 /* RxRelay.framework */,
+				8EC8B25D2409F571004AA226 /* RxSwift.framework */,
+				8EC8B24D2409EDBF004AA226 /* RxBlocking.framework */,
+				8EC8B24E2409EDBF004AA226 /* RxTest.framework */,
 				8E3DD13D240737FD0042459C /* RxCocoa.framework */,
 				8E3DD13E240737FD0042459C /* RxRelay.framework */,
 				8E3DD13C240737FC0042459C /* RxSwift.framework */,
@@ -520,7 +533,7 @@
 				1055452E23F62C0200250BC6 /* Sources */,
 				1055452F23F62C0200250BC6 /* Frameworks */,
 				1055453023F62C0200250BC6 /* Resources */,
-				8E3DD145240737FD0042459C /* Embed Frameworks */,
+				8EC8B2642409F571004AA226 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -652,6 +665,7 @@
 				8E3DD13A2407224F0042459C /* AddLocationViewModel.swift in Sources */,
 				1977AB6C2400DA1A00D8DD62 /* CLLocation+.swift in Sources */,
 				1977AB672400CD9800D8DD62 /* LocationsViewModel.swift in Sources */,
+				8EC8B2662409FB85004AA226 /* Date+.swift in Sources */,
 				1977AB3F23FFB32A00D8DD62 /* WeekWeatherViewModel.swift in Sources */,
 				8E3DD149240749E00042459C /* CurrentLocationViewModel.swift in Sources */,
 				1977AB4524008ECB00D8DD62 /* SettingCell.swift in Sources */,
@@ -865,6 +879,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Sky/SupportFile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -890,6 +905,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS/Static",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Sky/SupportFile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
