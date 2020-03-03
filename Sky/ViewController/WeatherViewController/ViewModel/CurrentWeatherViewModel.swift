@@ -12,6 +12,7 @@ import UIKit
 struct CurrentWeatherViewModel {
     //MARK: - static property
     static let empty = CurrentWeatherViewModel(weather: WeatherData.empty)
+    static let invalid = CurrentWeatherViewModel(weather: WeatherData.invalid)
     
     //MARK: - store property
     var weather: WeatherData
@@ -42,5 +43,15 @@ struct CurrentWeatherViewModel {
     
     var isEmpty: Bool {
         return weather == .empty
+    }
+    
+    var isInvalid: Bool {
+        return weather == .invalid
+    }
+}
+
+extension CurrentWeatherViewModel: Equatable {
+    static func ==(lhs: CurrentWeatherViewModel, rhs: CurrentWeatherViewModel) -> Bool {
+        return lhs.weather == rhs.weather
     }
 }

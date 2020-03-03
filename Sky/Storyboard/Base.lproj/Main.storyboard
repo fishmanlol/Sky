@@ -353,15 +353,12 @@
             <objects>
                 <viewController id="LD1-Ib-JvZ" customClass="CurrentWeatherViewController" customModule="Sky" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qJo-yU-kCN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="322"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="322.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9g-Eg-wWE">
-                                <rect key="frame" x="188.5" y="163.5" width="37" height="30"/>
+                                <rect key="frame" x="188.5" y="195.5" width="37" height="30"/>
                                 <state key="normal" title="Retry"/>
-                                <connections>
-                                    <action selector="retryBtTapped:" destination="LD1-Ib-JvZ" eventType="touchUpInside" id="LmI-Ux-6yl"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uRt-st-o6k">
                                 <rect key="frame" x="8" y="151" width="398" height="20.5"/>
@@ -466,7 +463,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="uRt-st-o6k" firstAttribute="bottom" secondItem="G9g-Eg-wWE" secondAttribute="top" constant="8" id="3es-ST-Bk0"/>
+                            <constraint firstItem="uRt-st-o6k" firstAttribute="bottom" secondItem="G9g-Eg-wWE" secondAttribute="top" constant="-24" id="3es-ST-Bk0"/>
                             <constraint firstAttribute="bottom" secondItem="fmT-fW-uVH" secondAttribute="bottom" id="9Wf-N9-7je"/>
                             <constraint firstItem="uRt-st-o6k" firstAttribute="centerY" secondItem="qJo-yU-kCN" secondAttribute="centerY" id="MfI-v8-QBo"/>
                             <constraint firstItem="qno-cv-Lj3" firstAttribute="trailing" secondItem="uRt-st-o6k" secondAttribute="trailing" constant="8" id="TDb-3g-R2d"/>
@@ -487,6 +484,7 @@
                         <outlet property="humidityLabel" destination="Y2H-Ar-G2T" id="bnZ-Sa-1eE"/>
                         <outlet property="loadingFailedLabel" destination="uRt-st-o6k" id="z3y-5W-In0"/>
                         <outlet property="locationLabel" destination="z6d-98-l65" id="TGk-Ql-zL3"/>
+                        <outlet property="retryButton" destination="G9g-Eg-wWE" id="ceJ-i0-d30"/>
                         <outlet property="summaryLabel" destination="Ncu-mY-iSv" id="XTM-tk-Uo6"/>
                         <outlet property="temperatureLabel" destination="cJ7-Ve-oZr" id="80D-pD-tqr"/>
                         <outlet property="weatherContainerView" destination="fmT-fW-uVH" id="yGI-ev-len"/>

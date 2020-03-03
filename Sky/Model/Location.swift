@@ -12,6 +12,7 @@ import CoreLocation
 struct Location: Codable {
     //MARK: - static property
     static let empty = Location(name: nil, latitude: 0, longitude: 0)
+    static let invalid = Location(name: "n/a", latitude: 0, longitude: 0)
     
     //MARK: - store property
     private var _name: String?

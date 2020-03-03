@@ -58,6 +58,7 @@ enum DataManagerError: Error {
 final class WeatherDataManager {
     internal let baseURL: URL
     internal let urlSession: URLSessionProtocol
+    internal let MAX_ATTEMPTS = 3
     internal init(baseURL: URL, urlSession: URLSessionProtocol) {
         self.baseURL = baseURL
         self.urlSession = urlSession
@@ -70,6 +71,7 @@ final class WeatherDataManager {
     func weatherDataAt(latitude: Double, longitude: Double) -> Observable<WeatherData> {
         let url = baseURL.appendingPathComponent("\(latitude), \(longitude)")
         var request = URLRequest(url: url)
+        request.timeoutInterval = 3
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "GET"
         
@@ -77,6 +79,22 @@ final class WeatherDataManager {
             .rx
             .data(request: request)
             .map { try WeatherData.decodeJSONFrom($0) }
+            .retryWhen({ (rxError) -> Observable<Int> in
+                return rxError.enumerated().flatMap { (index, error) -> Observable<Int> in
+                    if index < self.MAX_ATTEMPTS {
+                        print("Fetch weather data failed, this is the \(index + 1) time")
+                    
+                        return Observable<Int>.timer(.seconds(index + 1), scheduler: MainScheduler.instance)
+                    } else {
+                        print("Fetch weather data failed, no retry anymore")
+                        
+                        return Observable.error(error)
+                    }
+                }
+            })
+            .do(onNext: {
+                print($0)
+            })
             .catchErrorJustReturn(WeatherData.invalid)
     }
 }
